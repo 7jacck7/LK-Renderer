@@ -1,4 +1,16 @@
-﻿using System;
+﻿//
+//  MainForm.cs
+//  LK-Renderer
+//
+//  Created by ArdiMaster on 29.02.2016
+//
+//  Copyright (C) 2016 LK-Studios
+//
+//  Distributed under the terms and conditions of the MIT license.
+//  You can obtain a copy of the license at https://opensource.org/licenses/MIT
+//
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +27,9 @@ namespace LK_Renderer
     {
         String dataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LK-Studios\\LK-Renderer";
         String blenderVersion = "v2.76b";
+        int versionAvailability = 0;
+
+        private System.Net.WebClient webClient;
 
         public MainForm()
         {
@@ -23,16 +38,29 @@ namespace LK_Renderer
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            blenderVersionSelector.SelectedItem = "v2.76b";
             if (!System.IO.Directory.Exists(dataFolder))
             {
                 System.IO.Directory.CreateDirectory(dataFolder + "\\BlenderVersions");
             }
+            blenderVersionSelector.SelectedItem = "v2.76b";
+            doAvailability(checkAvailability("v2.76b"));
         }
 
         private void loadBlenderButton_Click(object sender, EventArgs e)
         {
-
+            switch (versionAvailability)
+            {
+                case 0:
+                    // TODO: add downloader
+                    break;
+                case 1:
+                    // TODO: add unzipping
+                    break;
+                case 2:
+                    // Do nothing - this Blender version was already downloaded and unzipped
+                    loadBlenderButton.Enabled = false;
+                    break;
+            }
         }
 
         private void blenderVersionSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,11 +91,13 @@ namespace LK_Renderer
                     loadBlenderButton.Enabled = false;
                     break;
             }
+
+            versionAvailability = availability;
         }
 
         private void unzipper_DoWork(object sender, DoWorkEventArgs e)
         {
-
+            // TODO: Add unzipping
         }
     }
 }

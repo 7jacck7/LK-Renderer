@@ -1,4 +1,16 @@
-﻿namespace LK_Renderer
+﻿//
+//  MainForm.cs
+//  LK-Renderer
+//
+//  Created by ArdiMaster on 29.02.2016
+//
+//  Copyright (C) 2016 LK-Studios
+//
+//  Distributed under the terms and conditions of the MIT license.
+//  You can obtain a copy of the license at https://opensource.org/licenses/MIT
+//
+
+namespace LK_Renderer
 {
     partial class MainForm
     {

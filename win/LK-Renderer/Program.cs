@@ -1,4 +1,16 @@
-﻿using System;
+﻿//
+//  MainForm.cs
+//  LK-Renderer
+//
+//  Created by ArdiMaster on 29.02.2016
+//
+//  Copyright (C) 2016 LK-Studios
+//
+//  Distributed under the terms and conditions of the MIT license.
+//  You can obtain a copy of the license at https://opensource.org/licenses/MIT
+//
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
