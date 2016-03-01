@@ -19,17 +19,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
 //using Microsoft.VisualBasic.Devices;
 
 namespace LK_Renderer
 {
     public partial class MainForm : Form
     {
-        String dataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LK-Studios\\LK-Renderer";
-        String blenderVersion = "v2.76b";
+        string dataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\LK-Studios\\LK-Renderer";
+        string blenderVersion = Properties.Settings.Default.versions[0];
         int versionAvailability = 0;
 
-        private System.Net.WebClient webClient;
+        private WebClient webClient = new WebClient();
 
         public MainForm()
         {
@@ -42,8 +43,14 @@ namespace LK_Renderer
             {
                 System.IO.Directory.CreateDirectory(dataFolder + "\\BlenderVersions");
             }
-            blenderVersionSelector.SelectedItem = "v2.76b";
-            doAvailability(checkAvailability("v2.76b"));
+
+            foreach(string ver in Properties.Settings.Default.versions)
+            {
+                blenderVersionSelector.Items.Add(ver);
+            }
+
+            blenderVersionSelector.SelectedItem = blenderVersion;
+            doAvailability(checkAvailability(blenderVersion));
         }
 
         private void loadBlenderButton_Click(object sender, EventArgs e)
@@ -51,10 +58,25 @@ namespace LK_Renderer
             switch (versionAvailability)
             {
                 case 0:
-                    // TODO: add downloader
+                    blenderVersionSelector.Enabled = false;
+                    loadBlenderButton.Enabled = false;
+                    loadBlenderButton.Text = "Downloading...";
+                    // TODO: get download URL
+                    // string dlVersionSubstring = (string) Properties.Settings.Default.GetType().GetProperty(blenderVersion.Replace(".", "")).GetValue(Properties.Settings.Default);
+                    // string dlURL = Properties.Settings.Default.baseurl + dlVersionSubstring;
+                    progressBar.Minimum = 0;
+                    progressBar.Maximum = 100;
+                    progressBar.Value = 0;
+                    statusLabel.Text = "Preparing to download Blender " + blenderVersion + "...";
+                    // webClient.DownloadFileAsync(new Uri(dlURL), dataFolder + "\\BlenderVersions\\" + blenderVersion + ".zip");
                     break;
                 case 1:
-                    // TODO: add unzipping
+                    blenderVersionSelector.Enabled = false;
+                    loadBlenderButton.Enabled = false;
+                    loadBlenderButton.Text = "Unpacking...";
+                    progressBar.Style = ProgressBarStyle.Marquee;
+                    // TODO: Add unzipping
+                    doAvailability(2);
                     break;
                 case 2:
                     // Do nothing - this Blender version was already downloaded and unzipped
@@ -65,7 +87,7 @@ namespace LK_Renderer
 
         private void blenderVersionSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            blenderVersion = blenderVersionSelector.SelectedItem.ToString();
+            blenderVersion = blenderVersionSelector.SelectedText;
             doAvailability(checkAvailability(blenderVersion));
         }
 
@@ -95,9 +117,27 @@ namespace LK_Renderer
             versionAvailability = availability;
         }
 
+        void webClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            progressBar.Value = e.ProgressPercentage;
+            statusLabel.Text = "Downloading (" + e.BytesReceived + "/" + e.TotalBytesToReceive + ")";
+        }
+
+        void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            progressBar.Value = 100;
+            statusLabel.Text = "Blender " + blenderVersion + " - download completed";
+            loadBlenderButton.Text = "Unpacking...";
+            progressBar.Style = ProgressBarStyle.Marquee;
+            // TODO: Add unzipping
+            doAvailability(1);
+        }
+
         private void unzipper_DoWork(object sender, DoWorkEventArgs e)
         {
-            // TODO: Add unzipping
+            // System.IO.StreamReader reader = new System.IO.StreamReader(path);
+            // System.IO.Compression.DeflateStream deflateStream = new System.IO.Compression.DeflateStream(reader.BaseStream, System.IO.Compression.CompressionMode.Decompress)
+            // System.IO.Compression.ZipFile.ExtractToDirectory(path, dataFolder + "\\BlenderVersions\\" + version);
         }
     }
 }

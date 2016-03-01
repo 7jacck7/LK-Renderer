@@ -44,7 +44,7 @@ namespace LK_Renderer
             this.labelBlndrVrsnSlctr = new System.Windows.Forms.Label();
             this.loadBlenderButton = new System.Windows.Forms.Button();
             this.unzipper = new System.ComponentModel.BackgroundWorker();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.statusLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -52,12 +52,6 @@ namespace LK_Renderer
             // 
             this.blenderVersionSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.blenderVersionSelector.FormattingEnabled = true;
-            this.blenderVersionSelector.Items.AddRange(new object[] {
-            "v2.76b",
-            "v2.76a",
-            "v2.76",
-            "v2.75a",
-            "v2.75"});
             this.blenderVersionSelector.Location = new System.Drawing.Point(12, 29);
             this.blenderVersionSelector.Name = "blenderVersionSelector";
             this.blenderVersionSelector.Size = new System.Drawing.Size(121, 21);
@@ -87,12 +81,12 @@ namespace LK_Renderer
             // 
             this.unzipper.DoWork += new System.ComponentModel.DoWorkEventHandler(this.unzipper_DoWork);
             // 
-            // progressBar1
+            // progressBar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(729, 547);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(189, 16);
-            this.progressBar1.TabIndex = 3;
+            this.progressBar.Location = new System.Drawing.Point(729, 547);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(189, 16);
+            this.progressBar.TabIndex = 3;
             // 
             // statusLabel
             // 
@@ -109,7 +103,7 @@ namespace LK_Renderer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 563);
             this.Controls.Add(this.statusLabel);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.loadBlenderButton);
             this.Controls.Add(this.labelBlndrVrsnSlctr);
             this.Controls.Add(this.blenderVersionSelector);
@@ -127,7 +121,7 @@ namespace LK_Renderer
         private System.Windows.Forms.Label labelBlndrVrsnSlctr;
         private System.Windows.Forms.Button loadBlenderButton;
         private System.ComponentModel.BackgroundWorker unzipper;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label statusLabel;
     }
 }

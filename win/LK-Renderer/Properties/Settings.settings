@@ -1,7 +1,26 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LK_Renderer.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="baseurl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://download.blender.org/release/</Value>
+    </Setting>
+    <Setting Name="v276b" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Blender2.76/blender-2.76b-windows64.zip</Value>
+    </Setting>
+    <Setting Name="v276a" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Blender2.76/blender-2.76a-windows64.zip</Value>
+    </Setting>
+    <Setting Name="v276" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Blender2.76/blender-2.76-windows64.zip</Value>
+    </Setting>
+    <Setting Name="versions" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;v2.76b&lt;/string&gt;
+  &lt;string&gt;v2.76a&lt;/string&gt;
+  &lt;string&gt;v2.76&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
